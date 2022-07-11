@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disponibilidad</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+    <div class="pie-pagina">
+        <nav class="navbar navbar-expand-lg navbar navbar-dark bg-darkblue">
+          <div class="container">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                  aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="index.html">
+                            <img src="../img/logo.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                            começo
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link active" href="disponibilidad.html">
+                            <img src="../img/calendario.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                            Disponibilidade
+                          </a>
+                      </li>
+                      <form class="form-inline">
+                          <li class="nav-item dropdown">
+                              <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                  data-bs-toggle="dropdown" aria-expanded="false">
+                                  Língua
+                              </a>
+                              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                  <li><a class="dropdown-item" href="../es/disponibilidad.html">Español</a></li>
+                                  <li><a class="dropdown-item" href="../disponibilidad.html">Ingles</a></li>
+                                  <li><a class="dropdown-item" href="disponibilidad.html">Portugues</a></li>
+                              </ul>
+                          </li>
+                      </form>
+                  </ul>
+              </div>
+          </div>
+          <!--fin container-->
+        </nav>
+        </div>
+      <div class="formulario">
+        <form class="row g-3" name="formularioDireccion">
+            
+            <label for="validationDefault04" class="form-label">Região</label>
+            <select class="form-select" id="regiones" required name="region" onchange="cambiaDatos()">
+              <option id="region" selected disabled value="0">seleção região</option>
+              <option value="1">Region Metropolitana</option>
+              <option value="2">Region de Arica y Parinacota (XV)</option>
+              <option value="3">Region de Tarapaca (I)</option>
+              <option value="4">Region de Antofagasta (II)</option>
+              <option value="5">Region de Atacama (III)</option>
+              <option value="6">Region de Coquimbo (IV)</option>
+              <option value="7">Region de Valparaiso (V)</option>
+              <option value="8">Region del Libertador General Bernardo O'Higgins (VI)</option>
+              <option value="9">Region del Maule (VII)</option>
+              <option value="10">Region del Ñuble (XVI)</option>
+              <option value="11">Region del Biobio (VIII)</option>
+              <option value="12">Region de La Araucania (IX)</option>
+              <option value="13">Region de Los Rios (XIV)</option>
+              <option value="14">Region de Los Lagos (X)</option>
+              <option value="15">Region de Aysen del General Carlos Ibañez del Campo (XI)</option>
+              <option value="16">Region de Magallanes y la Antartica Chilena (XII)</option>
+            </select>
+            <small id="lbl_region" class="form-text text-danger">você deve inserir uma região</small>
+            <label for="validationDefault04" class="form-label">communa</label>
+              <select class="form-select" id="comunas" required name="comuna">
+                <option id="comuna" selected disabled value="-">seleção communa</option>
+              </select>
+              <small id="lbl_comuna" class="form-text text-danger">você deve entrar em uma comuna</small>
+              <label for="validationDefault01" class="form-label">endereço</label>
+              <input type="text" class="form-control" id="txt_direccion" value="" required>
+              <small id="lbl_direccion" class="form-text text-danger">você deve inserir um endereço</small>
+              <label for="validationDefault05" class="form-label">número da casa/apartamento</label>
+              <input type="number" class="form-control" id="txt_numero" required>
+              <small id="lbl_numero" class="form-text text-danger">você deve inserir um número de casa/apartamento</small>
+            <div class="col-12"> 
+                    <button class="btn btn-primary" type="button" onclick="fn_mostrarErrores();">transferência de pesquisa</button>
+            </div>
+          </form>
+      </div>
+      <div class="container" style="max-width: 50%; margin-bottom: 40px;">
+        <div id="map"></div>
+        <script src="../js/funciones.js"></script>
+        <script
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
+      </div>
+      <footer class="pie-pagina">
+        <div class="grupo-1">
+            <div class="box">
+                <figure>
+                    <a href="index.html">
+                        <img class="imagen" src="../img/logo.png" alt="Logo Imagine Tours" style="width:100px;height:95px;border:0;">
+                    </a>
+                </figure>
+            </div>
+            <div></div>
+            <div class="box">
+                <h2>SIGUENOS</h2>
+                <div class="red-social">
+                    <a href="https://www.facebook.com/">
+                        <img class="logotipo" src="../img/facebook.png" alt=""
+                            style="width:50px;height:65px;border:0;">
+                    </a>
+                    <a href="https://www.instagram.com/?hl=es-la">
+                        <img class="logotipo" src="../img/instagram.png" alt=""
+                            style="width:50px;height:65px;border:0;">
+                    </a>
+                    <a href="https://twitter.com/?lang=es">
+                        <img class="logotipo" src="../img/twitter.png" alt=""
+                            style="width:50px;height:65px;border:0;">
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                        <img class="logotipo" src="../img/youtube.png" alt=""
+                            style="width:50px;height:65px;border:0;">
+                    </a>
+                </div>
+            </div>
+        </div>
+    
+        <div class="grupo-2">
+            <small>&copy; 2022 <b>Airport Airlines</b> - Todos os direitos reservados.</small>
+        </div>
+    </footer>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    </body>
+    <script src="../js/funciones.js"></script>
+    <script type="text/javascript">
+                fn_ocultarEtiquetas();
+    </script>
+</html>
+
